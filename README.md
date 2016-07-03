@@ -10,6 +10,7 @@ ASSIC simplifies and automates the installation and configuration of SQL Server.
 ## Getting started ##
 
 There are two examples of INI files included in this repo:
+
 1. For standalone Instance *standalone.ini*
 2. For clustered Instance *cluster.ini*
 
