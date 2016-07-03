@@ -16,7 +16,7 @@ There are two examples of INI files included in this repo:
 parameter | standalone | clustered
 ---------- | ---------- | ----------
 ACTION | Install | InstallFailoverCluster, AddNode, RemoveNode
-FAILOVERCLUSTERNETWORKNAME | Empty | \*Cluster_network_name\*
+FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 
 ### Under the hood ###
 
@@ -49,7 +49,7 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \*Cluster_network_name\*
 
 ### Usage examples ###
 
-  * Example1 => ./setup-sql.ps1 <Template File> <SA Passowrd> <switches>
+  * Example1 => ./setup-sql.ps1 \<Template File> \<SA Passowrd> \<switches>
   * Example2 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipPost -skipPre
   * Example3 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipInstall -skipPre
 
