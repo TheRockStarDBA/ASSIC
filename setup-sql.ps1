@@ -3,19 +3,19 @@
 .SYNOPSIS
 	Automated SQL Server Installation and Configuration script.
 .DESCRIPTION
-	The script builds Installation command from template file.
+	The script installs and configures SQL Server using INI files
 .NOTES
 	File Name: setup-sql.ps1
 	Author:	Andrzej Kozlowski andrzej@decktech.eu
-	Version: 0.1
+	Version: 0.5
 	Requires: Power Shell 3
 .LINK
 	http://decktech.eu
 .EXAMPLE
 	C:\> .\setup-sql.ps1 -template sqlTemplate.ini -pwdsa "xxx" -pwdsqlsvc "xxx" -pwdsqlagt "xxx" -pwdas "xxx"
 .FUNCTIONALITY
-	Supports SQL2008
-	Supports only 1st node cluster setup
+	Supports SQL2008+
+	Pre and Post actions not implemented
 .PARAM pIniFile
 	Key/value pair ini file
 .PARAM pSAPWD
@@ -271,6 +271,7 @@ Switches:
   => Switch 1 => SkipPre to skip pre-install steps
   => Switch 2 => SkipInstall to skip install steps
   => Switch 3 => SkipPost to skip post-install steps
+	=> Switch 4 => ShowCmd to create installation CMD based on INI file
 =====>
 Examples
   => Example1 => ./setup-sql.ps1 <Template File> <SA Passowrd> <switches>
