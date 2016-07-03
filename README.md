@@ -2,9 +2,17 @@
 
 ASSIC simplifies and automates the installation and configuration of SQL Server.
 
+Script executes first scripts located in **Pre** directory, performs installation and then finally executes scripts located in **Post** directory.
+All scripts with extensions .sql and .ps1 will be executed. To skip particular script add '\_' before its name.
+In first line of the scripts we can decide for which SQL Versions it will be executed.
+
+* for sql scripts => \# 2008,2008R2,2012,2014
+* for ps1 scripts => -- 2008,2008R2,2012,2014
+
 ## Prerequisites ##
 
 * Power Shell 3+
+* Supports .sql and .ps1 scripts in Pre and Post directories
 * Supports SQL server 2008+
 
 ## Getting started ##
@@ -46,7 +54,7 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
   * Switch 1 => SkipPre to skip pre-install steps
   * Switch 2 => SkipInstall to skip install steps
   * Switch 3 => SkipPost to skip post-install steps
-	* Switch 4 => ShowCmd to create installation CMD based on INI file
+  * Switch 4 => ShowCmd to create installation CMD based on INI file
 
 ### Usage examples ###
 
