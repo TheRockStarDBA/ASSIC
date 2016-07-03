@@ -1,2 +1,3 @@
-# ASSIC
-Automated SQL Server Installation and configuration
+# ASSIC - Automated SQL Server Installation and configuration #
+
+## Introduction ##
