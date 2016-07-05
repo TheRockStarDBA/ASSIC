@@ -108,8 +108,9 @@ Remove-Item $setupLog -Force
 [hashtable] $scriptConfig = New-Object hashtable
 
 $scriptConfig.Add("SERVERNAME", $serverName)
-$scriptConfig.Add("TCPPORT", $params.TCPPORT)
 $scriptConfig.Add("SQLSERVERNAME", $sqlServerName)
+$scriptConfig.Add("INSTANCENAME", $params.INSTANCENAME)
+$scriptConfig.Add("TCPPORT", $params.TCPPORT)
 $scriptConfig.Add("SQLVERSION", $params.SQLVERSION)
 $scriptConfig.Add("DIRSCRIPT", $dirScript)
 $scriptConfig.Add("SETUPLOG", $setupLog)

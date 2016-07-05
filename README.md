@@ -62,6 +62,37 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
   * Example2 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipPost -skipPre
   * Example3 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipInstall -skipPre
 
+## Task List
+
+### Pre Installation Scripts
+
+1. [ ] Creating Service accounts in Active directory
+2. [ ] Chimney Offload State
+
+### Post Installation Scripts
+
+1. [x] Set up static TCP port
+2. [ ] Local security policy rights => Perform Volume Maintenance Tasks
+3. [ ] Local security policy rights => Locked Pages in Memory
+4. [ ] Tempdb => Increase number of data files
+5. [ ] Tempdb => Local Tempdb on cluster
+6. [ ] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
+7. [ ] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
+8. [ ] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
+9. [ ] Global Configuration Settings => Min and Max Server Memory, max degree of parallelism, fill factor
+10. [ ] Model DB configuration
+11. [ ] Increase Error Log files  
+12. [ ] Dashboard binary Installation
+13. [ ] Dashboard SQL script Execution
+14. [ ] Securing sa account
+15. [ ] Jobs => Modify Microsoft Default Job
+16. [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
+17. [ ] Jobs => Cleanup
+18. [ ] Jobs => Monitoring parsing Error log file
+19. [ ] Jobs => monitoring blocking
+20. [ ] Jobs => Auditing
+21. [ ] Database Mail Configuration
+
 ## Contributing ##
 
 Pull requests welcomed.
