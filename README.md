@@ -14,6 +14,10 @@ In first line of the scripts we can decide for which SQL Versions it will be exe
 * Power Shell 3+
 * Supports .sql and .ps1 scripts in Pre and Post directories
 * Supports SQL server 2008+
+* External executables
+  * ntrights.exe => Set SecPol permissions
+  * SQLServer2012_PerformanceDashboard.msi => Installs SQL Dashboard
+  * QtWeb.exe => Command line Web Browser
 
 ## Getting started ##
 
@@ -72,8 +76,8 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 ### Post Installation Scripts
 
 1. [x] Set up static TCP port
-2. [ ] Local security policy rights => Perform Volume Maintenance Tasks
-3. [ ] Local security policy rights => Locked Pages in Memory
+2. [x] Local security policy rights => Locked Pages in Memory
+3. [x] Local security policy rights => Perform Volume Maintenance Tasks
 4. [ ] Tempdb => Increase number of data files
 5. [ ] Tempdb => Local Tempdb on cluster
 6. [ ] SQL Startup Parameters => Trace Flag -T845 for Standard Edition

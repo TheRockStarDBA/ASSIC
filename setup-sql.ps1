@@ -114,6 +114,7 @@ $scriptConfig.Add("TCPPORT", $params.TCPPORT)
 $scriptConfig.Add("SQLVERSION", $params.SQLVERSION)
 $scriptConfig.Add("DIRSCRIPT", $dirScript)
 $scriptConfig.Add("SETUPLOG", $setupLog)
+$scriptConfig.Add("SQLSVCACCOUNT", $params.SQLSVCACCOUNT)
 
 Write-Log -logfile $setupLog -level "Header" -message "SQL Installer Run on $serverName"
 Write-Log -logfile $setupLog -level "Section" -message "Log File format"
