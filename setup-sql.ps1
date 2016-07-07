@@ -116,6 +116,11 @@ $scriptConfig.Add("DIRSCRIPT", $dirScript)
 $scriptConfig.Add("SETUPLOG", $setupLog)
 $scriptConfig.Add("SQLSVCACCOUNT", $params.SQLSVCACCOUNT)
 
+if ($params.TEMPDBFILES -gt 0) { $scriptConfig.Add("TEMPDBFILES", $params.TEMPDBFILES) }
+if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.TEMPDBDATASIZE) }
+if ($params.TEMPDBLOGSIZE -gt 0) { $scriptConfig.Add("TEMPDBLOGSIZE", $params.TEMPDBLOGSIZE) }
+if ($params.TEMPDBFILEGROWTH -gt 0) { $scriptConfig.Add("TEMPDBFILEGROWTH", $params.TEMPDBFILEGROWTH) }
+
 Write-Log -logfile $setupLog -level "Header" -message "SQL Installer Run on $serverName"
 Write-Log -logfile $setupLog -level "Section" -message "Log File format"
 Write-Log -logfile $setupLog -level "Info" -message "Sample Information"

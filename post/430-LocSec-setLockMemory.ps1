@@ -2,9 +2,9 @@
 
 $sConfig = $args[0]
 
-$dirSetup = $configParams["DIRSCRIPT"]
-$setupLog = $configParams["SETUPLOG"]
-$sqlSvc = $configParams["SQLSVCACCOUNT"]
+$dirSetup = $sConfig["DIRSCRIPT"]
+$setupLog = $sConfig["SETUPLOG"]
+$sqlSvc = $sConfig["SQLSVCACCOUNT"]
 
 ."$dirSetup\scriptFunctions.ps1"
 

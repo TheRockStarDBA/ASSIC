@@ -14,9 +14,10 @@ In first line of the scripts we can decide for which SQL Versions it will be exe
 * Power Shell 3+
 * Supports .sql and .ps1 scripts in Pre and Post directories
 * Supports SQL server 2008+
-* External executables
+* External executables in subdirectory Tools
   * ntrights.exe => Set SecPol permissions
   * SQLServer2012_PerformanceDashboard.msi => Installs SQL Dashboard
+  * setup.sql => configures Performance Dashboard
   * QtWeb.exe => Command line Web Browser
 
 ## Getting started ##

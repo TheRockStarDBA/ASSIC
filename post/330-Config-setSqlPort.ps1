@@ -6,9 +6,9 @@ $computerName = $sConfig["SERVERNAME"]
 $portNumber = $sConfig["TCPPORT"]
 $sqlservername = $sConfig["SQLSERVERNAME"]
 $instanceName = $sConfig["INSTANCENAME"]
-$SqlVersion = $configParams["SQLVERSION"]
-$dirSetup = $configParams["DIRSCRIPT"]
-$setupLog = $configParams["SETUPLOG"]
+$SqlVersion = $sConfig["SQLVERSION"]
+$dirSetup = $sConfig["DIRSCRIPT"]
+$setupLog = $sConfig["SETUPLOG"]
 
 ."$dirSetup\scriptFunctions.ps1"
 
