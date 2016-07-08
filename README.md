@@ -79,11 +79,11 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 1. [x] Set up static TCP port
 2. [x] Local security policy rights => Locked Pages in Memory
 3. [x] Local security policy rights => Perform Volume Maintenance Tasks
-4. [ ] Tempdb => Increase number of data files
+4. [x] Tempdb => Increase number of data files
 5. [ ] Tempdb => Local Tempdb on cluster
 6. [ ] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
-7. [ ] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
-8. [ ] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
+7. [x] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
+8. [x] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
 9. [ ] Global Configuration Settings => Min and Max Server Memory, max degree of parallelism, fill factor
 10. [ ] Model DB configuration
 11. [ ] Increase Error Log files  

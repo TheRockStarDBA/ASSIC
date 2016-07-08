@@ -31,6 +31,34 @@ $sqlservername = $sConfig["SQLSERVERNAME"]
 
 ."$dirSetup\scriptFunctions.ps1"
 
+if (!$tempdbFiles) {
+
+#get a collection of physical processors
+[array] $procs = Get-WmiObject Win32_Processor
+$totalProcs = $procs.Count
+$totalCores = 0
+
+#count the total number of cores across all processors
+foreach ($proc in $procs)
+{
+    $totalCores = $totalCores + $proc.NumberOfCores
+}
+
+#get the amount of total memory (MB)
+$wmi = Get-WmiObject Win32_OperatingSystem
+$totalMemory = ($wmi.TotalVisibleMemorySize / 1024)
+
+#calculate the number of files needed (= number of procs)
+
+$tempdbFiles = $totalCores * $coreMultiplier
+
+if ($tempdbFiles -gt $maxFileCount)
+{
+    $tempdbFiles = $maxFileCount
+}
+
+}
+
 Write-Log -logfile $setupLog -level "Info" -message "TempDB Files are being set to $tempdbFiles"
 
 function Set-TempDbSize
@@ -40,34 +68,6 @@ function Set-TempDbSize
 
     [Parameter(Position=0, Mandatory=$false)] [switch]$outClipboard
     )
-
-    if (!$tempdbFiles) {
-
-    #get a collection of physical processors
-    [array] $procs = Get-WmiObject Win32_Processor
-    $totalProcs = $procs.Count
-    $totalCores = 0
-
-    #count the total number of cores across all processors
-    foreach ($proc in $procs)
-    {
-        $totalCores = $totalCores + $proc.NumberOfCores
-    }
-
-    #get the amount of total memory (MB)
-    $wmi = Get-WmiObject Win32_OperatingSystem
-    $totalMemory = ($wmi.TotalVisibleMemorySize / 1024)
-
-    #calculate the number of files needed (= number of procs)
-
-    $tempdbFiles = $totalCores * $coreMultiplier
-
-    if ($tempdbFiles -gt $maxFileCount)
-    {
-        $tempdbFiles = $maxFileCount
-    }
-
-    }
 
     if (!$tempdbDataSize) {
 
@@ -145,7 +145,7 @@ function Set-TempDbSize
 }
 
 $query = Set-TempDbSize
-
-Invoke-SqlCmd -ServerInstance $sqlservername -Query $query
+# Write-Host $query
+Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)
 
 Write-Log -logfile $setupLog -level "Info" -message "TempDB Files are currently set to $tempdbFiles"

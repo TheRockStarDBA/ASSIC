@@ -101,7 +101,9 @@ else
 $instanceName = $params.INSTANCENAME
 
 $setupLog = join-path -path $dirScript -childPath "setupSql_$($serverName)_$instanceName.html"
-Remove-Item $setupLog -Force
+if (Test-Path $setupLog) {
+	Remove-Item $setupLog -Force
+}
 
 # Preparing parameters for pre- and post- scripts
 
@@ -115,6 +117,7 @@ $scriptConfig.Add("SQLVERSION", $params.SQLVERSION)
 $scriptConfig.Add("DIRSCRIPT", $dirScript)
 $scriptConfig.Add("SETUPLOG", $setupLog)
 $scriptConfig.Add("SQLSVCACCOUNT", $params.SQLSVCACCOUNT)
+$scriptConfig.Add("AGTSVCACCOUNT", $params.AGTSVCACCOUNT)
 
 if ($params.TEMPDBFILES -gt 0) { $scriptConfig.Add("TEMPDBFILES", $params.TEMPDBFILES) }
 if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.TEMPDBDATASIZE) }
