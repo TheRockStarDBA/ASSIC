@@ -114,10 +114,15 @@ $scriptConfig.Add("SQLSERVERNAME", $sqlServerName)
 $scriptConfig.Add("INSTANCENAME", $params.INSTANCENAME)
 $scriptConfig.Add("TCPPORT", $params.TCPPORT)
 $scriptConfig.Add("SQLVERSION", $params.SQLVERSION)
+$scriptConfig.Add("SQLEDITION", $params.SQLEDITION)
 $scriptConfig.Add("DIRSCRIPT", $dirScript)
 $scriptConfig.Add("SETUPLOG", $setupLog)
 $scriptConfig.Add("SQLSVCACCOUNT", $params.SQLSVCACCOUNT)
 $scriptConfig.Add("AGTSVCACCOUNT", $params.AGTSVCACCOUNT)
+$scriptConfig.Add("MAXMEMORY", $params.MAXMEMORY)
+$scriptConfig.Add("MAXDOP", $params.MAXDOP)
+$scriptConfig.Add("FILLFACTOR", $params.FILLFACTOR)
+
 
 if ($params.TEMPDBFILES -gt 0) { $scriptConfig.Add("TEMPDBFILES", $params.TEMPDBFILES) }
 if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.TEMPDBDATASIZE) }

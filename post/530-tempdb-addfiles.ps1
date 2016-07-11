@@ -1,4 +1,4 @@
-# 2005,2008,2008R2,2012
+# 2008,2008R2,2012,2014
 
 <#
 .NOTES
@@ -21,7 +21,6 @@ $sConfig = $args[0]
 
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]
-$sqlSvc = $sConfig["SQLSVCACCOUNT"]
 $sqlservername = $sConfig["SQLSERVERNAME"]
 
 [int] $tempdbFiles = $sConfig["TEMPDBFILES"]

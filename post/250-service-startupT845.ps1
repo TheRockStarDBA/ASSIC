@@ -1,13 +1,16 @@
-# 2008,2008R2,2012,2014
+# 2008
 
 $sConfig = $args[0]
 
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]
+$sqlEdition = $sConfig["SQLEDITION"]
 
-$StartupParameter='-T1118'
+$StartupParameter='-T845'
 
 ."$dirSetup\scriptFunctions.ps1"
+
+if ($sqlEdition -eq "SE") {
 
 Write-Log -logfile $setupLog -level "Info" -message "Startup Parameter is being set to $StartupParameter"
 
@@ -39,3 +42,9 @@ $instances | %{
 }
 
 Write-Log -logfile $setupLog -level "Info" -message "Startup Parameter is currently set to $StartupParameter"
+
+} else {
+
+Write-Log -logfile $setupLog -level "Info" -message "Startup Parameter $StartupParameter not needed"
+
+}
