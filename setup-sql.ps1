@@ -122,7 +122,7 @@ $scriptConfig.Add("AGTSVCACCOUNT", $params.AGTSVCACCOUNT)
 $scriptConfig.Add("MAXMEMORY", $params.MAXMEMORY)
 $scriptConfig.Add("MAXDOP", $params.MAXDOP)
 $scriptConfig.Add("FILLFACTOR", $params.FILLFACTOR)
-
+$scriptConfig.Add("LOGFILES", $params.LOGFILES)
 
 if ($params.TEMPDBFILES -gt 0) { $scriptConfig.Add("TEMPDBFILES", $params.TEMPDBFILES) }
 if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.TEMPDBDATASIZE) }
