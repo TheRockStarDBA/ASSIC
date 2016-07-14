@@ -89,14 +89,15 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 11. [x] Model DB configuration
 12. [x] Increase Error Log files  
 13. [x] Performance Dashboard binary Installation
-14. [ ] Securing sa account
-15. [ ] Jobs => Modify Microsoft Default Job
-16. [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
-17. [ ] Jobs => Cleanup
-18. [ ] Jobs => Monitoring parsing Error log file
-19. [ ] Jobs => monitoring blocking
-20. [ ] Jobs => Auditing
-21. [ ] Database Mail Configuration
+14. [ ] Creating supporting stored procedures
+15. [ ] Securing sa account
+16. [ ] Jobs => Modify Microsoft Default Job
+17. [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
+18. [ ] Jobs => Cleanup
+19. [ ] Jobs => Monitoring parsing Error log file
+20. [ ] Jobs => monitoring blocking
+21. [ ] Jobs => Auditing
+22. [ ] Database Mail Configuration
 
 ## Contributing ##
 
