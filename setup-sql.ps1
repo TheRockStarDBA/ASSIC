@@ -123,6 +123,17 @@ $scriptConfig.Add("MAXMEMORY", $params.MAXMEMORY)
 $scriptConfig.Add("MAXDOP", $params.MAXDOP)
 $scriptConfig.Add("FILLFACTOR", $params.FILLFACTOR)
 $scriptConfig.Add("LOGFILES", $params.LOGFILES)
+$scriptConfig.Add("ACTION", $params.ACTION)
+
+$scriptConfig.Add("INVAPP", $params.INVAPP)
+$scriptConfig.Add("INVGROUP", $params.INVGROUP)
+$scriptConfig.Add("INVDESC", $params.INVDESC)
+$scriptConfig.Add("INVLICTYPE", $params.INVLICTYPE)
+$scriptConfig.Add("INVLICNUM", $params.INVLICNUM)
+$scriptConfig.Add("INVVM", $params.INVVM)
+$scriptConfig.Add("INVPROD", $params.INVPROD)
+$scriptConfig.Add("INVTICKET", $params.INVTICKET)
+$scriptConfig.Add("INVOWNER", $params.INVOWNER)
 
 if ($params.TEMPDBFILES -gt 0) { $scriptConfig.Add("TEMPDBFILES", $params.TEMPDBFILES) }
 if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.TEMPDBDATASIZE) }
