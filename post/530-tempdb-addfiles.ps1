@@ -144,7 +144,7 @@ function Set-TempDbSize
 }
 
 $query = Set-TempDbSize
-# Write-Host $query
-Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)
+Write-Host $query
+# Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)
 
 Write-Log -logfile $setupLog -level "Info" -message "TempDB Files are currently set to $tempdbFiles"
