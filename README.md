@@ -81,23 +81,25 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 3. [x] Local security policy rights => Perform Volume Maintenance Tasks
 4. [x] Tempdb => Increase number of data files
 5. [ ] Tempdb => Local Tempdb on cluster
-6. [x] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
-7. [x] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
-8. [x] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
-9. [x] Global Configuration Settings => Min and Max Server Memory, max degree of parallelism, fill factor
-10. [x] Global Configuration Settings Others
-11. [x] Model DB configuration
-12. [x] Increase Error Log files  
-13. [x] Performance Dashboard binary Installation
-14. [ ] Creating supporting stored procedures
-15. [ ] Securing sa account
-16. [ ] Jobs => Modify Microsoft Default Job
-17. [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
-18. [ ] Jobs => Cleanup
-19. [ ] Jobs => Monitoring parsing Error log file
-20. [ ] Jobs => monitoring blocking
-21. [ ] Jobs => Auditing
-22. [ ] Database Mail Configuration
+6. [x] Set SQLSVS and SQLAGT startup type depending on Installation ACTION. (Auto - Standalone, Manual - cluster)
+7. [x] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
+8. [x] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
+9. [x] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
+10. [x] Add local Windows Administrators
+11. [x] Global Configuration Settings => Min and Max Server Memory, max degree of parallelism, fill factor
+12. [x] Global Configuration Settings Others
+13. [x] Model DB configuration
+14. [x] Increase Error Log files  
+15. [x] Performance Dashboard binary Installation
+16. [ ] Creating supporting stored procedures
+17. [ ] Securing sa account
+18. [ ] Jobs => Modify Microsoft Default Job
+19. [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
+20. [ ] Jobs => Cleanup
+21. [ ] Jobs => Monitoring parsing Error log file
+22. [ ] Jobs => monitoring blocking
+23. [ ] Jobs => Auditing
+24. [ ] Database Mail Configuration
 
 ## Contributing ##
 

@@ -124,6 +124,7 @@ $scriptConfig.Add("MAXDOP", $params.MAXDOP)
 $scriptConfig.Add("FILLFACTOR", $params.FILLFACTOR)
 $scriptConfig.Add("LOGFILES", $params.LOGFILES)
 $scriptConfig.Add("ACTION", $params.ACTION)
+$scriptConfig.Add("WINDOWSADMINACCOUNTS", $params.WINDOWSADMINACCOUNTS)
 
 $scriptConfig.Add("INVAPP", $params.INVAPP)
 $scriptConfig.Add("INVGROUP", $params.INVGROUP)
