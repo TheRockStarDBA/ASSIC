@@ -1,10 +1,13 @@
 # 2008,2008R2,2012,2014
 
-$sConfig = $args[0]
+param(
+    [hashtable] $sConfig
+)
 
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]
 $sqlServername = $sConfig["SQLSERVERNAME"]
+$sqlVersion = $sConfig["SQLVERSION"]
 
 ."$dirSetup\scriptFunctions.ps1"
 
@@ -18,9 +21,15 @@ $server = New-Object -TypeName Microsoft.SqlServer.Management.Smo.Server -Argume
 # Variables
 
 $jobName="OLA SYSTEMDB IntegrityCheck"
-# $log = $server.InstallDataDirectory + '\Log\' + $jobName
+$trimmedJobName = $jobName.Replace(" ","_")
 
-$log = '$(ESCAPE_SQUOTE(SQLLOGDIR))\SYSTEMDBIntegrityCheck_$(ESCAPE_SQUOTE(JOBID))_$(ESCAPE_SQUOTE(STEPID))_$(ESCAPE_SQUOTE(STRTDT))_$(ESCAPE_SQUOTE(STRTTM)).txt'
+$sqlVersionSplit = '2008','2008R2','2012'
+
+if ( $sqlVersionSplit -contains $sqlVersion  ) {
+		$log = "$($server.InstallDataDirectory)\Log\$trimmedJobName.txt"
+} else {
+		$log = "$(ESCAPE_SQUOTE(SQLLOGDIR))\$trimmedJobName_$(ESCAPE_SQUOTE(JOBID))_$(ESCAPE_SQUOTE(STEPID))_$(ESCAPE_SQUOTE(STRTDT))_$(ESCAPE_SQUOTE(STRTTM)).txt"
+}
 
 $strJobStep1 = @'
 sqlcmd -E -S $(ESCAPE_SQUOTE(SRVR)) -d master -Q "EXECUTE [dbo].[DatabaseIntegrityCheck] @Databases = 'SYSTEM_DATABASES', @LogToTable = 'Y'" -b

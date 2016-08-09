@@ -76,32 +76,33 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 
 ### Post Installation Scripts
 
-1. [x] Set up static TCP port
-2. [x] Local security policy rights => Locked Pages in Memory
-3. [x] Local security policy rights => Perform Volume Maintenance Tasks
-4. [x] Tempdb => Increase number of data files
-5. [ ] Tempdb => Local Tempdb on cluster
-6. [ ] Change Authentication to mixed
-7. [x] Set SQLSVS and SQLAGT startup type depending on Installation ACTION. (Auto - Standalone, Manual - cluster)
-8. [x] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
-9. [x] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
-10. [x] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
-11. [x] Add local Windows Administrators
-12. [x] Global Configuration Settings => Min and Max Server Memory, max degree of parallelism, fill factor
-13. [x] Global Configuration Settings Others
-14. [x] Model DB configuration
-15. [x] Increase Error Log files  
-16. [x] Performance Dashboard binary Installation
-17. [ ] Creating supporting stored procedures
-18. [ ] Securing sa account
-19. [x] Jobs => Create job categories
-20. [x] Jobs => Modify Microsoft Default Job
-21. [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
-22. [ ] Jobs => Cleanup
-23. [ ] Jobs => Monitoring parsing Error log file
-24. [ ] Jobs => monitoring blocking
-25. [ ] Jobs => Auditing
-26. [ ] Database Mail Configuration
+  * [x] Set up static TCP port
+  * [x] Local security policy rights => Locked Pages in Memory
+  * [x] Local security policy rights => Perform Volume Maintenance Tasks
+  * [x] Tempdb => Increase number of data files
+  * [ ] Tempdb => Local Tempdb on cluster
+  * [ ] Change Authentication to mixed
+  * [x] Set SQLSVS and SQLAGT startup type depending on Installation ACTION. (Auto - Standalone, Manual - cluster)
+  * [x] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
+  * [x] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
+  * [x] SQL Startup Parameters => Trace Flag -T1118 to disable mixed extends
+  * [x] Add local Windows Administrators
+  * [x] Global Configuration Settings => Min and Max Server Memory, max degree of parallelism, fill factor
+  * [x] Global Configuration Settings Others
+  * [x] Model DB configuration
+  * [x] Increase Error Log files  
+  * [x] Performance Dashboard binary Installation
+  * [x] Creating supporting OLA stored procedures
+  * [ ] Creating other stored procedures
+  * [ ] Securing sa account
+  * [x] Jobs => Create job categories
+  * [x] Jobs => Modify Microsoft Default Job
+  * [ ] Jobs => OLA Database Maintenance, Database Backup and Cleanup
+  * [ ] Jobs => Cleanup
+  * [ ] Jobs => Monitoring parsing Error log file
+  * [ ] Jobs => monitoring blocking
+  * [ ] Jobs => Auditing
+  * [ ] Database Mail Configuration
 
 ## Contributing ##
 
