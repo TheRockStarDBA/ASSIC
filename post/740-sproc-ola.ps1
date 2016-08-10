@@ -9,20 +9,15 @@ param(
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]
 $sqlServername = $sConfig["SQLSERVERNAME"]
-$logTo = $sConfig["LOGTOTABLE"]
 
 ."$dirSetup\scriptFunctions.ps1"
-
-  if (!$logTo) {
-    $logTo  = 'N'
-    }
 
 Write-Log -logfile $setupLog -level "Info" -message "Stored Procedures supporting OLA are being created"
 
 # Connect to the specified instance
 $server = New-Object -TypeName Microsoft.SqlServer.Management.Smo.Server -ArgumentList $sqlServerName
 
-$sqlVariable = "CreateJobs='N'", "LogToTable='$logTo'"
+$sqlVariable = "CreateJobs='N'"
 
 $exitCode = Invoke-Sqlcmd -ServerInstance $SqlServerName -InputFile "$dirSetup\Tools\MaintenanceSolution.sql" -Variable $sqlVariable -querytimeout ([int]::MaxValue)
 
