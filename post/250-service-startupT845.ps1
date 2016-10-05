@@ -1,6 +1,8 @@
 # 2008
 
-$sConfig = $args[0]
+param(
+    [hashtable] $sConfig
+)
 
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]

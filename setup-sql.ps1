@@ -94,7 +94,7 @@ else
 		$sqlServerName = $params.FAILOVERCLUSTERNETWORKNAME + '\' + $params.INSTANCENAME
 	}
 
-[String] $installationPath = $params.SQLDISTSVR + $params.SQLVERSION + "\" + $params.SQLEDITION
+[String] $installationPath = $params.SQLDISTSVR
 
 #Get the folder path and start building the Log file
 
@@ -125,6 +125,8 @@ $scriptConfig.Add("FILLFACTOR", $params.FILLFACTOR)
 $scriptConfig.Add("LOGFILES", $params.LOGFILES)
 $scriptConfig.Add("ACTION", $params.ACTION)
 $scriptConfig.Add("WINDOWSADMINACCOUNTS", $params.WINDOWSADMINACCOUNTS)
+$scriptConfig.Add("FAILOVERCLUSTERGROUP", $params.FAILOVERCLUSTERGROUP)
+
 
 $scriptConfig.Add("INVAPP", $params.INVAPP)
 $scriptConfig.Add("INVGROUP", $params.INVGROUP)

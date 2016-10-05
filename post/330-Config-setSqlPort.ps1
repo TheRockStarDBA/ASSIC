@@ -1,6 +1,8 @@
 # 2008,2008R2,2012,2014
 
-$sConfig = $args[0]
+param(
+    [hashtable] $sConfig
+)
 
 $computerName = $sConfig["SERVERNAME"]
 $portNumber = $sConfig["TCPPORT"]

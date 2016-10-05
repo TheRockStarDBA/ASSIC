@@ -11,13 +11,15 @@ v2.0 - Andrzej Kozlowski -Improvements:
 	Adding Location change for data and log file
 #>
 
+param(
+    [hashtable] $sConfig
+)
+
 $maxFileCount = 8
 $maxLogFileInitialSizeMB = 4096
 $maxFileInitialSizeMB = 4096
 $defaultFileGrowth = 10
 $coreMultiplier = 1.0
-
-$sConfig = $args[0]
 
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]
@@ -145,6 +147,6 @@ function Set-TempDbSize
 
 $query = Set-TempDbSize
 Write-Host $query
-# Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)
+Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)
 
 Write-Log -logfile $setupLog -level "Info" -message "TempDB Files are currently set to $tempdbFiles"

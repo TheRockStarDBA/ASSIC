@@ -45,6 +45,19 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
   * For following cluster nodes ACTION=AddNode
   * For cluster node removal ACTION=RemoveNode
 
+### Cluster Support ###
+
+Following scripts have to be run on all cluster nodes:
+* Config-setSqlPort.ps1
+* LocSec-setLockMemory.ps1
+* Add-WindowsAdmins.ps1
+* Monitoring-Dashboard-MSI.ps1
+
+### Opened Issues ###
+
+* SQL scripts via PS or natively
+* Return value from SQL scripts
+
 ### Parameters ###
 
 1. Mandatory
@@ -85,7 +98,7 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
   * [x] Local security policy rights => Perform Volume Maintenance Tasks
   * [x] Tempdb => Increase number of data files
   * [ ] Tempdb => Local Tempdb on cluster
-  * [ ] Change Authentication to mixed
+  * [x] Change Authentication to mixed
   * [x] Set SQLSVS and SQLAGT startup type depending on Installation ACTION. (Auto - Standalone, Manual - cluster)
   * [x] SQL Startup Parameters => Trace Flag -T845 for Standard Edition
   * [x] SQL Startup Parameters => Trace Flag -T1117 to grow all files in a file group equally
