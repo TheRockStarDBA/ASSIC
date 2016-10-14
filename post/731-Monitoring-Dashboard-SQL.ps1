@@ -10,6 +10,7 @@ $sqlServername = $sConfig["SQLSERVERNAME"]
 
 ."$dirSetup\scriptFunctions.ps1"
 
+start-sleep 5
 Write-Log -logfile $setupLog -level "Info" -message "Executing Performance Dashboard Script"
 Invoke-Sqlcmd -ServerInstance $SqlServerName -InputFile "C:\Program Files (x86)\Microsoft SQL Server\110\Tools\Performance Dashboard\setup.sql" -querytimeout ([int]::MaxValue)
 Write-Log -logfile $setupLog -level "Info" -message "Script Succeeded with $exitCode"
