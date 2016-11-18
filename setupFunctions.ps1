@@ -130,6 +130,13 @@ Function createCmdAddNode()
 	$installCMD=$installCMD + " /SQLSVCPASSWORD='" + $pSQLSVCPASSWORD + "'"
 	$installCMD=$installCMD + " /AGTSVCACCOUNT=" + $params.AGTSVCACCOUNT
 	$installCMD=$installCMD + " /AGTSVCPASSWORD='" + $pAGTSVCPASSWORD + "'"
+    if ( $params.PCUSOURCE.Length -gt 0 ) {
+        $installCMD=$installCMD + " /PCUSOURCE=" + $params.PCUSOURCE
+    }
+
+    if ( $params.CUSOURCE.Length -gt 0 ) {
+        $installCMD=$installCMD + " /CUSOURCE=" + $params.CUSOURCE
+    }
 
 	$installCMD=$installCMD + "`n"
 	return $installCMD

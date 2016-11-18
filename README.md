@@ -121,6 +121,13 @@ Following scripts have to be run on all cluster nodes:
   * [ ] Jobs => Auditing
   * [ ] Database Mail Configuration
 
+## Versions ##
+
+V 1.0 Initial
+V 1.1
+- Passwords are required only if SQL is being install. If you run ASSIC to do pre or post steps passwords are not longer required.
+-  
+
 ## Contributing ##
 
 Pull requests welcomed.

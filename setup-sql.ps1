@@ -48,7 +48,7 @@ cls
 # Starting script
 $start = Get-Date
 
-if( $pIniFile -and $pSAPWD )
+if( $pIniFile -and ($pSAPWD -or $SkipInstall))
 {
 # Setting Execution Policy
 # Set-ExecutionPolicy RemoteSigned -force
