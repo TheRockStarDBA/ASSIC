@@ -48,9 +48,9 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 ### Cluster Support ###
 
 Following scripts have to be run on all cluster nodes:
+* 260-CNode-Add-WindowsAdmins.ps1
 * Config-setSqlPort.ps1
 * LocSec-setLockMemory.ps1
-* Add-WindowsAdmins.ps1
 * Monitoring-Dashboard-MSI.ps1
 
 ### Opened Issues ###
