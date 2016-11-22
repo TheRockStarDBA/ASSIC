@@ -3,11 +3,14 @@ Function Write-Log
     param(
 		[string] $logfile = $(throw "Logfile required"),
         [string] $level = $(throw "Level required"),
-        [string] $message = $(throw "Message required")
+        [string] $message = $(throw "Message required"),
+        [string] $web = $false
     )
 
 	$fAttention = "green"
     $fWarning = "yellow"
+
+    if ( $web -eq $true ) {
 
 	$logWeb = [System.Web.HttpUtility]::HtmlEncode($message)
     $logWeb = (Get-Date).ToString() + ": $logWeb"
@@ -21,8 +24,20 @@ Function Write-Log
         "Header"   {$string = "<h2>$logWeb</h2>"}
         "Section"  {$string = "<h3>$logWeb</h3>"}
     }
-
 	Write-Host $string
 	$string >> $logfile
+} else {
+    $logWeb = (Get-Date).ToString() + ": $logWeb"
 
+    switch ($level)
+    {
+        "Info"     	{Write-Host -ForegroundColor White $message}
+		"Notification" {Write-Host -ForegroundColor Magenta $message}
+        "Warning"  	{Write-Host -ForegroundColor DarkYellow $message}
+        "Error"    {Write-Host -ForegroundColor Red -backgroundcolor Yellow $message; if ($message -ne "Sample Error") { $errorStop = $true }}
+        "Header"   {Write-Host -ForegroundColor DarkGreen $message}
+        "Section"  {Write-Host -ForegroundColor Green $message}
+    }
+	$message >> $logfile
+    }
 }

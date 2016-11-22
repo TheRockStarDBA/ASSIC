@@ -40,13 +40,16 @@ param
 		[Parameter(Position=5,Mandatory=$false)][switch] $SkipPre,
 		[Parameter(Position=6,Mandatory=$false)][switch] $SkipPost,
 		[Parameter(Position=7,Mandatory=$false)][switch] $SkipInstall,
-		[Parameter(Position=8,Mandatory=$false)][switch] $ShowCmd
+		[Parameter(Position=8,Mandatory=$false)][switch] $SkipVal,
+		[Parameter(Position=9,Mandatory=$false)][switch] $ShowCmd
+
 	)
 
 <# ****************************** Main ****************************** #>
 cls
 # Starting script
 $start = Get-Date
+$noie = $true
 
 if( $pIniFile -and ($pSAPWD -or $SkipInstall))
 {
@@ -54,6 +57,7 @@ if( $pIniFile -and ($pSAPWD -or $SkipInstall))
 # Set-ExecutionPolicy RemoteSigned -force
 $pathScript = $MyInvocation.MyCommand.Path
 $dirScript = Split-Path $pathScript
+."$dirScript\scriptFunctions.ps1"
 ."$dirScript\setupFunctions.ps1"
 [System.Reflection.Assembly]::LoadWithPartialName("System.web")
 
@@ -166,7 +170,7 @@ $errorStop = $false
 	Write-Log -logfile $setupLog -level "Info" -message ("Script running as admin by {0}" -f $winIdentity.Identity.Name) | Out-Null
 
 	# Pre-install
-		if ($SkipPre -eq $false -and $errorStop -eq $false)
+		if ($SkipPre -eq $false -and $errorStop -eq $false -and $ShowCmd -eq $false)
 		{
 			Write-Log -logfile $setupLog -level "Section" -message "Starting Pre-Install Steps"
 			if ($pscmdlet.ShouldProcess("Execute Pre-Install Scripts", "Pre-Install"))
@@ -227,7 +231,7 @@ $errorStop = $false
 		}
 
 	# Post-install
-		if ($SkipPost -eq $false -and $errorStop -eq $false)
+		if ($SkipPost -eq $false -and $errorStop -eq $false -and $ShowCmd -eq $false)
 		{
 			Write-Log -logfile $setupLog -level "Section" -message "Starting Post-Install Steps"
 			if ($pscmdlet.ShouldProcess("Execute Post-Install Scripts", "Post-Install"))
@@ -250,6 +254,30 @@ $errorStop = $false
 			Write-Log -logfile $setupLog -level "Section" -message "Skipping Post-Install Steps"
 		}
 
+		# Validation
+			if ($SkipVal -eq $false -and $ShowCmd -eq $false)
+			{
+				Write-Log -logfile $setupLog -level "Section" -message "Starting Validation Steps"
+				if ($pscmdlet.ShouldProcess("Execute Validation Scripts", "Validation"))
+				{
+					$IsSysAdmin = Invoke-SqlQuery -sqlQuery "select is_srvrolemember('sysadmin')" -sqlServerName $sqlServerName
+					if($IsSysAdmin -eq 1)
+					{
+						$postDir = $scriptDir + "\Val"
+						Invoke-Scripts -Param $scriptConfig -Folder $postDir
+					}
+					else
+					{
+						Write-Log -logfile $setupLog -level "Error" -message "The current user is not member of sysadmin group to run the Validation Scripts"
+					}
+				}
+				Write-Log -logfile $setupLog -level "Info" -message "Completed Validation Steps"
+			}
+			else
+			{
+				Write-Log -logfile $setupLog -level "Section" -message "Skipping Validation Steps"
+			}
+
 }
 else
 {
@@ -266,7 +294,7 @@ Write-Log -logfile $setupLog -level "Section" -Message "Script Time Results"
 Write-Log -logfile $setupLog -level "Info" -Message "Script Duration: $timeResult"
 
 #Open the log file for the user
-if ($pscmdlet.ShouldProcess("$setupLog", "Open Installer Log"))
+if ($pscmdlet.ShouldProcess("$setupLog", "Open Installer Log") -and $noie -eq $false)
 	{
 		$noie = @()
 		try
@@ -278,7 +306,7 @@ if ($pscmdlet.ShouldProcess("$setupLog", "Open Installer Log"))
 			$strResult = $_
 			Write-Log -logfile $setupLog -level "Warning" -message "$file - Failed: $strResult"
 		}
-}
+	}
 }
 else
 
@@ -297,14 +325,17 @@ Optional:
   => Parameter 5 => pASSVCPASSWORD to set password for ASSVC account.
 =====>
 Switches:
-  => Switch 1 => SkipPre to skip pre-install steps
-  => Switch 2 => SkipInstall to skip install steps
-  => Switch 3 => SkipPost to skip post-install steps
-	=> Switch 4 => ShowCmd to create installation CMD based on INI file
+  => Switch 1 => SkipPre 		=>	to skip pre-install steps
+  => Switch 2 => SkipInstall    	=>	to skip install steps
+  => Switch 3 => SkipPost 		=>	to skip post-install steps
+  => Switch 4 => SkipVal 		=>	to skip validation steps
+  => Switch 5 => ShowCmd 		=>	to create installation CMD based on INI file
+
 =====>
 Examples
   => Example1 => ./setup-sql.ps1 <Template File> <SA Passowrd> <switches>
-  => Example2 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipInstall -skipPre
-  => Example3 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipInstall -skipPre"
+  => Example2 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipPre
+  => Example3 => ./setup-sql.ps1 'SQLServer.ini' -skipInstall -skipPre -skipVal
+  => Example4 => ./setup-sql.ps1 'SQLServer.ini' -showCmd"
   Write-Host $cmdHelp
 }
