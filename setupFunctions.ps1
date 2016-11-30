@@ -274,7 +274,7 @@ Function Invoke-Scripts
 						}
 						else
 						{
-							Write-Log -logfile $setupLog -level "Info" -message "Script $script finished with $exitCode"
+							Write-Log -logfile $setupLog -level "Error" -message "Script $script finished with Exit Code: $exitCode"
 						}
 					}
 					catch

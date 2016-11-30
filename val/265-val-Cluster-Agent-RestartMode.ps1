@@ -15,9 +15,12 @@ if ($action -eq "InstallFailoverCluster" -or $action -eq "AddNode" -or $action -
 
   $clusterAgent = "SQL Server Agent (" +  $clusterGroup + ")"
   $cr = Get-ClusterResource $clusterAgent
-  Write-Log -logfile $setupLog -level "Info" -message "Previous $clusterAgent RestartAction was $($cr.RestartAction)"
-  $cr.RestartAction = 1
-  Write-Log -logfile $setupLog -level "Info" -message "Current $clusterAgent RestartAction is set to $($cr.RestartAction)"
-} else {
-Write-Log -logfile $setupLog -level "Info" -message "Standalone Setup, Step not needed"
+  $ra = $cr.RestartAction
+
+  if ( $ra -eq 1 ) {
+    Write-Log -logfile $setupLog -level "Info" -message "Validating OK => Cluster Resource $clusterAgent Restart Action: $ra"
+    } else {
+    Write-Log -logfile $setupLog -level "Error" -message "ERROR ===>>> Cluster Resource $clusterAgent Restart Action: $ra"
+    }
+
 }

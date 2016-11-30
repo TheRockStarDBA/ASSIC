@@ -30,20 +30,6 @@ foreach ($ip in $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].IPA
 #We need to commit the changes by calling the Alter method
 $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].Alter()
 
-#Verify the results and write them to the log
-foreach ($ip in $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].IPAddresses) {
-  $ipName = $ip.name
-  $curPort = $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].IPAddresses[$ip.name].IPAddressProperties["TcpPort"].value
-  $curDynPort = $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].IPAddresses[$ip.name].IPAddressProperties["TcpDynamicPorts"].value
-
-  if ($curDynPort -ne "") {
-    Write-Log -logfile $setupLog -level "Error" -message "The SQL TCP $ipName Dynamic port number is not empty and has value: $curDynPort"
-  }
-  if ($curPort -ne $portNumber) {
-    Write-Log -logfile $setupLog -level "Error" -message "The SQL TCP $ipName port number has wrong value: $curDynPort"
-  }
-}
-
 $curPort = $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].IPAddresses["IPAll"].IPAddressProperties["TcpPort"].value
 $curDynPort = $wmi.ServerInstances["$instanceName"].ServerProtocols["Tcp"].IPAddresses["IPAll"].IPAddressProperties["TcpDynamicPorts"].value
 if ($curDynPort -eq "") { $curDynPort = "null" }

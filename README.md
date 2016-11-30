@@ -49,7 +49,6 @@ FAILOVERCLUSTERNETWORKNAME | Empty | \<Cluster_network_name>
 
 Following scripts have to be run on all cluster nodes:
 * 260-CNode-Add-WindowsAdmins.ps1
-* Config-setSqlPort.ps1
 * LocSec-setLockMemory.ps1
 * Monitoring-Dashboard-MSI.ps1
 
@@ -85,6 +84,9 @@ Following scripts have to be run on all cluster nodes:
   * Example3 => ./setup-sql.ps1 'SQLServer.ini' 'secret' -skipInstall -skipPre
 
 ## Task List
+
+1. Add validation to SQL Installation as a output from summary.txt
+2. Remove Validation error with lack of permissions
 
 ### Pre Installation Scripts
 

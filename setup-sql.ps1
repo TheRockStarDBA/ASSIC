@@ -59,22 +59,12 @@ $pathScript = $MyInvocation.MyCommand.Path
 $dirScript = Split-Path $pathScript
 ."$dirScript\scriptFunctions.ps1"
 ."$dirScript\setupFunctions.ps1"
-[System.Reflection.Assembly]::LoadWithPartialName("System.web")
+# [System.Reflection.Assembly]::LoadWithPartialName("System.web")
 
 # Read the template file and parse the parameters
 cd $dirScript
 $iniFile = Get-Content $pIniFile
 $iniFile | Foreach-Object {$params = @{}} {$params[$_.split('=')[0]] = $_.split('=')[1]}
-
-if ($params.SQLVERSION -NotLike '2008*' )
-	{
-		Import-Module sqlps -DisableNameChecking
-	}
-else
-	{
-	if (!(Get-PSSnapin | ?{$_.name -eq 'SqlServerProviderSnapin100'})) { Add-PSSnapin SqlServerProviderSnapin100 }
-	if (!(Get-PSSnapin | ?{$_.name -eq 'SqlServerCmdletSnapin100'})) { Add-PSSnapin SqlServerCmdletSnapin100 }
-	}
 
 $serverName = gc env:computername
 
@@ -147,13 +137,17 @@ if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.
 if ($params.TEMPDBLOGSIZE -gt 0) { $scriptConfig.Add("TEMPDBLOGSIZE", $params.TEMPDBLOGSIZE) }
 if ($params.TEMPDBFILEGROWTH -gt 0) { $scriptConfig.Add("TEMPDBFILEGROWTH", $params.TEMPDBFILEGROWTH) }
 
-Write-Log -logfile $setupLog -level "Header" -message "SQL Installer Run on $serverName"
+Write-Log -logfile $setupLog -level "Header" -message "Log Descriptions"
+Write-Log -logfile $setupLog -level "Info" -message "==================================================>"
 Write-Log -logfile $setupLog -level "Section" -message "Log File format"
 Write-Log -logfile $setupLog -level "Info" -message "Sample Information"
 Write-Log -logfile $setupLog -level "Notification" -message "Sample Notification"
 Write-Log -logfile $setupLog -level "Warning" -message "Sample Warning"
 Write-Log -logfile $setupLog -level "Error" -message "Sample Error"
 
+Write-Log -logfile $setupLog -level "Info" -message "==================================================>"
+
+Write-Log -logfile $setupLog -level "Header" -message "SQL Installer Started on $serverName"
 Write-Log -logfile $setupLog -level "Section" -message "Start Parameters"
 
 # Check if the executing user is running in an elevated shell and as an admin
@@ -229,6 +223,16 @@ $errorStop = $false
 		{
 			Write-Log -logfile $setupLog -level "Section" -message "Skipping Install Steps"
 		}
+
+	if ($params.SQLVERSION -NotLike '2008*' )
+			{
+				Import-Module sqlps -DisableNameChecking
+			}
+	else
+			{
+			if (!(Get-PSSnapin | ?{$_.name -eq 'SqlServerProviderSnapin100'})) { Add-PSSnapin SqlServerProviderSnapin100 }
+			if (!(Get-PSSnapin | ?{$_.name -eq 'SqlServerCmdletSnapin100'})) { Add-PSSnapin SqlServerCmdletSnapin100 }
+			}
 
 	# Post-install
 		if ($SkipPost -eq $false -and $errorStop -eq $false -and $ShowCmd -eq $false)

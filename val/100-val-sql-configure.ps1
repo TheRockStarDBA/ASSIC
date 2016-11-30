@@ -16,7 +16,6 @@ $query = @"
     SELECT value FROM [master]..[sysconfigures] where comment = 'show advanced options'
 "@
 
-# Write-Host $query
 $exitCode = (Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)).value
 
 if ($exitCode -eq "1")

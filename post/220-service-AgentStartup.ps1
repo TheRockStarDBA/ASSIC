@@ -6,10 +6,7 @@ param(
 
 $dirSetup = $sConfig["DIRSCRIPT"]
 $setupLog = $sConfig["SETUPLOG"]
-$sqlservername = $sConfig["SQLSERVERNAME"]
 $instanceName = $sConfig["INSTANCENAME"]
-$sqlSvc = $sConfig["SQLSVCACCOUNT"]
-$agtSvc = $sConfig["AGTSVCACCOUNT"]
 $action = $sConfig["ACTION"]
 
 ."$dirSetup\scriptFunctions.ps1"
