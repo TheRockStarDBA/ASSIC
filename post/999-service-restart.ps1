@@ -32,6 +32,7 @@ if ($action -eq "InstallFailoverCluster" -or $action -eq "AddNode" -or $action -
   Get-ClusterResource $clusterAgent | Start-ClusterResource
 
   Write-Log -logfile $setupLog -level "Info" -message "Taking SQL Services Online"
+
 } else {
   Write-Log -logfile $setupLog -level "Info" -message "Restarting the SQL Services: $SQLsvc, $AGTsvc"
 
