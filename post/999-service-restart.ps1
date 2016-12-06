@@ -28,8 +28,8 @@ if ($action -eq "InstallFailoverCluster" -or $action -eq "AddNode" -or $action -
 
   $clusterSQL = "SQL Server (" +  $clusterGroup + ")"
   $clusterAgent = "SQL Server Agent (" +  $clusterGroup + ")"
-  Get-ClusterResource $clusterSQL | Stop-ClusterResource
-  Get-ClusterResource $clusterAgent | Start-ClusterResource
+  Get-ClusterResource $clusterSQL | Stop-ClusterResource | out-null
+  Get-ClusterResource $clusterAgent | Start-ClusterResource | out-null
 
   Write-Log -logfile $setupLog -level "Info" -message "Taking SQL Services Online"
 
