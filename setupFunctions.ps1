@@ -4,6 +4,7 @@ Function generateBaseDir()
 		"2008" { $fBaseDir = "MSSQL10." + $params.INSTANCENAME }
 		"2012" { $fBaseDir = "MSSQL11." + $params.INSTANCENAME }
 		"2014" { $fBaseDir = "MSSQL12." + $params.INSTANCENAME }
+		"2016" { $fBaseDir = "MSSQL13." + $params.INSTANCENAME }
 	}
 	return $fBaseDir
 
@@ -29,6 +30,10 @@ Function createCmdInstall()
 	# Directories
 
 	$installCMD=$installCMD + " /INSTALLSQLDATADIR='" + $params.INSTALLSQLDATADIR  + "\'"
+
+	if ( $params.SQLVERSION -ne "2008" -or $params.SQLVERSION -ne "2008R2" ) {
+		$installCMD=$installCMD + " /IACCEPTSQLSERVERLICENSETERMS=" + $params.IACCEPTSQLSERVERLICENSETERMS
+	}
 
 	if ( $params.PCUSOURCE.Length -gt 0 ) {
 		$installCMD=$installCMD + " /PCUSOURCE=" + $params.PCUSOURCE
@@ -72,13 +77,15 @@ Function createCmdInstall()
 
 	# Cluster specific parameters
 
-		if (( $params.FAILOVERCLUSTERNETWORKNAME.Length -gt 0 ) -and ( $params.FAILOVERCLUSTERGROUP.Length -gt 0 ) -and
-			( $params.FAILOVERCLUSTERDISKS.Length -gt 0 ) -and ( $params.FAILOVERCLUSTERIPADDRESSES.Length -gt 0 ))
+		if (( $params.FAILOVERCLUSTERNETWORKNAME.Length -gt 0 ) -and ( $params.FAILOVERCLUSTERGROUP.Length -gt 0 ) -and ( $params.FAILOVERCLUSTERIPADDRESSES.Length -gt 0 ))
 			{
 			$installCMD=$installCMD + " /FAILOVERCLUSTERNETWORKNAME=" + $params.FAILOVERCLUSTERNETWORKNAME
 			$installCMD=$installCMD + " /FAILOVERCLUSTERGROUP=" + $params.FAILOVERCLUSTERGROUP
-			$installCMD=$installCMD + " /FAILOVERCLUSTERDISKS=" + $params.FAILOVERCLUSTERDISKS
 			$installCMD=$installCMD + " /FAILOVERCLUSTERIPADDRESSES=" + $params.FAILOVERCLUSTERIPADDRESSES
+			if ( $params.FAILOVERCLUSTERDISKS.Length -gt 0 )
+				{
+				$installCMD=$installCMD + " /FAILOVERCLUSTERDISKS=" + $params.FAILOVERCLUSTERDISKS
+				}
 			}
 		else
 			{
@@ -101,6 +108,11 @@ Function createCmdAddNode()
 	$installCMD=$installCMD + " /SQLSVCPASSWORD='" + $pSQLSVCPASSWORD + "'"
 	$installCMD=$installCMD + " /AGTSVCACCOUNT=" + $params.AGTSVCACCOUNT
 	$installCMD=$installCMD + " /AGTSVCPASSWORD='" + $pAGTSVCPASSWORD + "'"
+
+	if ( $params.SQLVERSION -ne "2008" -or $params.SQLVERSION -ne "2008R2" ) {
+		$installCMD=$installCMD + " /IACCEPTSQLSERVERLICENSETERMS=" + $params.IACCEPTSQLSERVERLICENSETERMS
+	}
+
     if ( $params.PCUSOURCE.Length -gt 0 ) {
         $installCMD=$installCMD + " /PCUSOURCE=" + $params.PCUSOURCE
     }
