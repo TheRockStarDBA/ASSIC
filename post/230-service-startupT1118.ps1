@@ -41,3 +41,4 @@ $instances | %{
 }
 
 Write-Log -logfile $setupLog -level "Info" -message "Startup Parameter is currently set to $StartupParameter"
+return 0

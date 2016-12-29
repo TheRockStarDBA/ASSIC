@@ -241,7 +241,7 @@ Function Invoke-Scripts
 		# Cleaning off the # and -- from variable, and splitting
 		[array] $supVersion = $supRawVersion.Replace('#', '').Replace('-','').Trim().Split(',')
 
-		if ($supVersion -contains $fSqlVersion) # Supported by SQL Version ?
+		if ($supVersion -contains $fSqlVersion -or $supVersion -contains "All") # Supported by SQL Version ?
 			{
 				if ($script.Extension -eq ".sql")
 				{
@@ -280,7 +280,7 @@ Function Invoke-Scripts
 					{
 						$exitCode = Invoke-Powershell -psScript $script.FullName -configParams $Param
 
-						if ($exitCode -eq "" -or $exitCode -eq $null)
+						if ($exitCode -eq "" -or $exitCode -eq $null -or $exitCode[-1] -eq 0)
 						{
 							Write-Log -logfile $setupLog -level "Info" -message "Script $script Succeeded with empty exit code."
 						}

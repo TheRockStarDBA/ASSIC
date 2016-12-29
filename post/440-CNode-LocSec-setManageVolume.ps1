@@ -16,3 +16,4 @@ $fileExe = "$dirSetup\Tools\ntrights.exe"
 & $fileExe -u $sqlSvc +r SeManageVolumePrivilege
 
 Write-Log -logfile $setupLog -level "Info" -message "Perform Volume Maintenance Privilage is currently set to $sqlSvc"
+return 0
