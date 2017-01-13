@@ -120,6 +120,7 @@ $scriptConfig.Add("LOGFILES", $params.LOGFILES)
 $scriptConfig.Add("ACTION", $params.ACTION)
 $scriptConfig.Add("WINDOWSADMINACCOUNTS", $params.WINDOWSADMINACCOUNTS)
 $scriptConfig.Add("FAILOVERCLUSTERGROUP", $params.FAILOVERCLUSTERGROUP)
+$scriptConfig.Add("FAILOVERCLUSTERNETWORKNAME", $params.FAILOVERCLUSTERNETWORKNAME)
 
 
 $scriptConfig.Add("INVAPP", $params.INVAPP)
@@ -131,6 +132,9 @@ $scriptConfig.Add("INVVM", $params.INVVM)
 $scriptConfig.Add("INVPROD", $params.INVPROD)
 $scriptConfig.Add("INVTICKET", $params.INVTICKET)
 $scriptConfig.Add("INVOWNER", $params.INVOWNER)
+
+$scriptConfig.Add("TSMSERVER", $params.TSMSERVER)
+$scriptConfig.Add("TSMPORT", $params.TSMPORT)
 
 if ($params.TEMPDBFILES -gt 0) { $scriptConfig.Add("TEMPDBFILES", $params.TEMPDBFILES) }
 if ($params.TEMPDBDATASIZE -gt 0) { $scriptConfig.Add("TEMPDBDATASIZE", $params.TEMPDBDATASIZE) }
