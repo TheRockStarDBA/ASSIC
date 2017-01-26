@@ -87,6 +87,8 @@ Following scripts have to be run on all cluster nodes:
 
 1. Add validation to SQL Installation as a output from summary.txt
 2. Remove Validation error with lack of permissions
+3. SQL 2016 - add tempdb files to installation script
+4. Cluster SQL 2016 - restart script to bring online CEIP
 
 ### Pre Installation Scripts
 

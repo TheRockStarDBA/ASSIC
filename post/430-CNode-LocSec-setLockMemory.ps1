@@ -1,4 +1,4 @@
-# 2008,2008R2,2012,2014
+# All
 
 # & $fileExe -u $sqlSvc +r SeLockMemoryPrivilege
 
@@ -29,4 +29,4 @@ if ( $exitCode -eq 0 ) {
     Write-Log -logfile $setupLog -level "Error" -message "ERROR ===>>> The Lock Memory Privilage has failed: $exitCode"
 }
 
-return $exitCode
+return $exit

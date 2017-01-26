@@ -1,4 +1,4 @@
-# 2008,2008R2,2012,2014
+# All
 
 param(
     [hashtable] $sConfig
@@ -23,7 +23,7 @@ $totalMemory = [Math]::Round(($wmi.TotalVisibleMemorySize / 1024))
 $exitCode = (Invoke-SqlCmd -ServerInstance $sqlservername -Query $query -querytimeout ([int]::MaxValue)).value
 $osMemory = $totalMemory - $exitCode
 
-if ( $osMemory -gt 4096 ) {
+if ( $osMemory -ge 4096 ) {
       Write-Log -logfile $setupLog -level "Info" -message "Validating OK => OS Memory: $osMemory"
 } else {
       Write-Log -logfile $setupLog -level "Error" -message "ERROR ===>>> OS Memory: $osMemory"
