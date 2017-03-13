@@ -33,8 +33,8 @@ Function Write-Log
     {
         "Info"     	{Write-Host -ForegroundColor White $message}
 		"Notification" {Write-Host -ForegroundColor Magenta $message}
-        "Warning"  	{Write-Host -ForegroundColor DarkYellow $message}
-        "Error"    {Write-Host -ForegroundColor Red -backgroundcolor Yellow $message; if ($message -ne "Sample Error") { $errorStop = $true }}
+        "Warning"  	{Write-Host -ForegroundColor White -backgroundcolor Red $message}
+        "Error"    {Write-Host -ForegroundColor White -backgroundcolor Red $message; if ($message -ne "Sample Error") { $errorStop = $true }}
         "Header"   {Write-Host -ForegroundColor DarkGreen $message}
         "Section"  {Write-Host -ForegroundColor Green $message}
     }
