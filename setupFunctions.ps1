@@ -31,7 +31,7 @@ Function createCmdInstall()
 
 	$installCMD=$installCMD + " /INSTALLSQLDATADIR='" + $params.INSTALLSQLDATADIR  + "\'"
 
-	if ( $params.SQLVERSION -ne "2008" -or $params.SQLVERSION -ne "2008R2" ) {
+	if (-Not ($params.SQLVERSION -eq "2008" -or $params.SQLVERSION -eq "2008R2" )) {
 		$installCMD=$installCMD + " /IACCEPTSQLSERVERLICENSETERMS=" + $params.IACCEPTSQLSERVERLICENSETERMS
 	}
 
@@ -109,7 +109,7 @@ Function createCmdAddNode()
 	$installCMD=$installCMD + " /AGTSVCACCOUNT=" + $params.AGTSVCACCOUNT
 	$installCMD=$installCMD + " /AGTSVCPASSWORD='" + $pAGTSVCPASSWORD + "'"
 
-	if ( $params.SQLVERSION -ne "2008" -or $params.SQLVERSION -ne "2008R2" ) {
+	if (-Not ($params.SQLVERSION -eq "2008" -or $params.SQLVERSION -eq "2008R2" )) {
 		$installCMD=$installCMD + " /IACCEPTSQLSERVERLICENSETERMS=" + $params.IACCEPTSQLSERVERLICENSETERMS
 	}
 
